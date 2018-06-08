@@ -1,0 +1,107 @@
+﻿.body-content {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+.ThumbSaatveSaat {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.ThumbSaatveSaat .caption1SaatveSaat {
+  text-align: center;
+  color: #ff0000;
+  font-weight: bold;
+}
+.ThumbSaatveSaat .desc1SaatveSaat {
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+}
+.ThumbSaatveSaat button {
+  text-align: center;
+}
+.ThumbSaatveSaat a > img {
+  width: 100%;
+  height: 180px;
+}
+.errorSaatveSaat .code {
+  color: #ff0000;
+  font-size: 15em;
+  font-weight: bold;
+}
+.errorSaatveSaat .message {
+  font-size: 1.5em;
+}
+.buySaatveSaat {
+  font-size: 5em;
+  color: #14d214;
+  text-align: center;
+  font-weight: bold;
+}
+.detailSaatveSaat ul > li {
+  margin-right: 25px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+.detailSaatveSaat li.active {
+  border-bottom: 3px solid silver;
+}
+.detailSaatveSaat .item-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #f6f6f6;
+}
+.detailSaatveSaat .menu-items {
+  list-style-type: none;
+  font-size: 11px;
+  display: inline-flex;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+.detailSaatveSaat .btn-success {
+  width: 100%;
+  border-radius: 0;
+  margin-top: 10px;
+}
+.detailSaatveSaat .section {
+  width: 100%;
+  margin-left: -15px;
+  padding: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #f8f9f9;
+}
+.detailSaatveSaat .title-price {
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: black;
+}
+.detailSaatveSaat .title-attr {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: black;
+}
+.detailSaatveSaat div.section > div {
+  width: 100%;
+  display: inline-flex;
+}
+.detailSaatveSaat .attr {
+  cursor: pointer;
+  margin-right: 5px;
+  height: 20px;
+  font-size: 10px;
+  padding: 2px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+.detailSaatveSaat .attr.active {
+  border: 1px solid orange;
+}
+@media (max-width: 426px) {
+  .detailSaatveSaat .section {
+    width: 104%;
+  }
+  .detailSaatveSaat .menu-items {
+    padding-left: 0;
+  }
+}

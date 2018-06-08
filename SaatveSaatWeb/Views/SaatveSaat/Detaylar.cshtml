@@ -1,0 +1,41 @@
+﻿@using SaatveSaatWeb.Models;
+@model Product
+
+
+
+
+
+<div class="container detailSaatveSaat">
+
+    <div class="col-xs-12 col-sm-6 col-md-8 item-photo">
+        <img style="max-width:100%;" src="/images/logo.png" />
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <h1>@Html.DisplayFor(modeItem => Model.ProductName)</h1>
+        <h6 class="title-price"><small>ÜRÜN FİYATI</small></h6>
+        <h3 style="margin-top:0px;">@Html.DisplayFor(modeItem => Model.ProductPrice) TL</h3>
+            <h6 class="title-attr"><small>TOPLAM STOK ADETİ</small></h6>
+            <div>
+                <div>@Html.DisplayFor(modeItem => Model.ProductStock)</div>
+            </div>
+    </div>
+    <div class="section" style="padding-bottom:20px;">
+        <form method="post" action="@Url.Action("SatinAl", "SaatveSaat", new { id = @Html.DisplayFor(modeItem => Model.ProductId    ) })">
+            <button type="submit" class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>SATIN AL</button>
+        </form>
+    </div>
+    <div class="col-xs-12">
+        <ul class="menu-items">
+            <li class="active">Ürün Açıklaması</li>
+            <li>Ürünün Yorumları</li>
+            <li>Ödeme Seçenekleri</li>
+        </ul>
+        <div style="width:100%;border-top:1px solid silver">
+            <p style="padding:15px">
+                <small>
+                    @Html.DisplayFor(modeItem => Model.ProductDesc)
+                </small>
+            </p>
+        </div>
+    </div>
+</div>

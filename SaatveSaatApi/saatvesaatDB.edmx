@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SaatvesaatDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="BrandImage" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="BrandCategory">
+          <Key>
+            <PropertyRef Name="BrandCategoryId" />
+          </Key>
+          <Property Name="BrandCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandCategoryBrandId" Type="int" Nullable="false" />
+          <Property Name="BrandCategoryCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompletedOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="CompletedOrderProductId" Type="int" Nullable="false" />
+          <Property Name="CompletedOrderProductPiece" Type="int" Nullable="false" />
+          <Property Name="CompletedOrderCreateDate" Type="date" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PendingOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="PendingOrderProductId" Type="int" Nullable="false" />
+          <Property Name="PendingOrderProductPiece" Type="int" Nullable="false" />
+          <Property Name="PendingOrderCreateDate" Type="datetime" Nullable="false" />
+          <Property Name="PendingOrderUpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProductPrice" Type="float" Nullable="false" />
+          <Property Name="ProductDesc" Type="nchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProductStock" Type="int" Nullable="false" />
+          <Property Name="ProductBrandCategoryId" Type="int" Nullable="false" />
+          <Property Name="ProductImage" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_BrandCategory_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="BrandCategory" Type="Self.BrandCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="BrandCategory">
+              <PropertyRef Name="BrandCategoryBrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BrandCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="BrandCategory" Type="Self.BrandCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="BrandCategory">
+              <PropertyRef Name="BrandCategoryCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompletedOrder_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="CompletedOrder" Type="Self.CompletedOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="CompletedOrder">
+              <PropertyRef Name="CompletedOrderProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PendingOrder_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PendingOrder" Type="Self.PendingOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PendingOrder">
+              <PropertyRef Name="PendingOrderProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_BrandCategory">
+          <End Role="BrandCategory" Type="Self.BrandCategory" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrandCategory">
+              <PropertyRef Name="BrandCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductBrandCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SaatvesaatDBModelStoreContainer">
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrandCategory" EntityType="Self.BrandCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompletedOrder" EntityType="Self.CompletedOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PendingOrder" EntityType="Self.PendingOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BrandCategory_Brand" Association="Self.FK_BrandCategory_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="BrandCategory" EntitySet="BrandCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BrandCategory_Category" Association="Self.FK_BrandCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="BrandCategory" EntitySet="BrandCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompletedOrder_Product" Association="Self.FK_CompletedOrder_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CompletedOrder" EntitySet="CompletedOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PendingOrder_Product" Association="Self.FK_PendingOrder_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PendingOrder" EntitySet="PendingOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_BrandCategory" Association="Self.FK_Product_BrandCategory">
+            <End Role="BrandCategory" EntitySet="BrandCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SaatvesaatDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BrandImage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="BrandCategory" Relationship="Self.FK_BrandCategory_Brand" FromRole="Brand" ToRole="BrandCategory" />
+        </EntityType>
+        <EntityType Name="BrandCategory">
+          <Key>
+            <PropertyRef Name="BrandCategoryId" />
+          </Key>
+          <Property Name="BrandCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandCategoryBrandId" Type="Int32" Nullable="false" />
+          <Property Name="BrandCategoryCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_BrandCategory_Brand" FromRole="BrandCategory" ToRole="Brand" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_BrandCategory_Category" FromRole="BrandCategory" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_BrandCategory" FromRole="BrandCategory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BrandCategory" Relationship="Self.FK_BrandCategory_Category" FromRole="Category" ToRole="BrandCategory" />
+        </EntityType>
+        <EntityType Name="CompletedOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="CompletedOrderProductId" Type="Int32" Nullable="false" />
+          <Property Name="CompletedOrderProductPiece" Type="Int32" Nullable="false" />
+          <Property Name="CompletedOrderCreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_CompletedOrder_Product" FromRole="CompletedOrder" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PendingOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="PendingOrderProductId" Type="Int32" Nullable="false" />
+          <Property Name="PendingOrderProductPiece" Type="Int32" Nullable="false" />
+          <Property Name="PendingOrderCreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PendingOrderUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_PendingOrder_Product" FromRole="PendingOrder" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProductPrice" Type="Double" Nullable="false" />
+          <Property Name="ProductDesc" Type="String" MaxLength="500" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProductStock" Type="Int32" Nullable="false" />
+          <Property Name="ProductBrandCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ProductImage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="BrandCategory" Relationship="Self.FK_Product_BrandCategory" FromRole="Product" ToRole="BrandCategory" />
+          <NavigationProperty Name="CompletedOrder" Relationship="Self.FK_CompletedOrder_Product" FromRole="Product" ToRole="CompletedOrder" />
+          <NavigationProperty Name="PendingOrder" Relationship="Self.FK_PendingOrder_Product" FromRole="Product" ToRole="PendingOrder" />
+        </EntityType>
+        <Association Name="FK_BrandCategory_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="BrandCategory" Type="Self.BrandCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="BrandCategory">
+              <PropertyRef Name="BrandCategoryBrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BrandCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="BrandCategory" Type="Self.BrandCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="BrandCategory">
+              <PropertyRef Name="BrandCategoryCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_BrandCategory">
+          <End Role="BrandCategory" Type="Self.BrandCategory" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrandCategory">
+              <PropertyRef Name="BrandCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductBrandCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompletedOrder_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="CompletedOrder" Type="Self.CompletedOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="CompletedOrder">
+              <PropertyRef Name="CompletedOrderProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PendingOrder_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PendingOrder" Type="Self.PendingOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PendingOrder">
+              <PropertyRef Name="PendingOrderProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SaatvesaatDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brand" EntityType="Self.Brand" />
+          <EntitySet Name="BrandCategory" EntityType="Self.BrandCategory" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="CompletedOrder" EntityType="Self.CompletedOrder" />
+          <EntitySet Name="PendingOrder" EntityType="Self.PendingOrder" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <AssociationSet Name="FK_BrandCategory_Brand" Association="Self.FK_BrandCategory_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="BrandCategory" EntitySet="BrandCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BrandCategory_Category" Association="Self.FK_BrandCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="BrandCategory" EntitySet="BrandCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_BrandCategory" Association="Self.FK_Product_BrandCategory">
+            <End Role="BrandCategory" EntitySet="BrandCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompletedOrder_Product" Association="Self.FK_CompletedOrder_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CompletedOrder" EntitySet="CompletedOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PendingOrder_Product" Association="Self.FK_PendingOrder_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PendingOrder" EntitySet="PendingOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SaatvesaatDBModelStoreContainer" CdmEntityContainer="SaatvesaatDBEntities">
+          <EntitySetMapping Name="Brand">
+            <EntityTypeMapping TypeName="SaatvesaatDBModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="BrandImage" ColumnName="BrandImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrandCategory">
+            <EntityTypeMapping TypeName="SaatvesaatDBModel.BrandCategory">
+              <MappingFragment StoreEntitySet="BrandCategory">
+                <ScalarProperty Name="BrandCategoryId" ColumnName="BrandCategoryId" />
+                <ScalarProperty Name="BrandCategoryBrandId" ColumnName="BrandCategoryBrandId" />
+                <ScalarProperty Name="BrandCategoryCategoryId" ColumnName="BrandCategoryCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="SaatvesaatDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompletedOrder">
+            <EntityTypeMapping TypeName="SaatvesaatDBModel.CompletedOrder">
+              <MappingFragment StoreEntitySet="CompletedOrder">
+                <ScalarProperty Name="CompletedOrderProductId" ColumnName="CompletedOrderProductId" />
+                <ScalarProperty Name="CompletedOrderProductPiece" ColumnName="CompletedOrderProductPiece" />
+                <ScalarProperty Name="CompletedOrderCreateDate" ColumnName="CompletedOrderCreateDate" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PendingOrder">
+            <EntityTypeMapping TypeName="SaatvesaatDBModel.PendingOrder">
+              <MappingFragment StoreEntitySet="PendingOrder">
+                <ScalarProperty Name="PendingOrderProductId" ColumnName="PendingOrderProductId" />
+                <ScalarProperty Name="PendingOrderProductPiece" ColumnName="PendingOrderProductPiece" />
+                <ScalarProperty Name="PendingOrderCreateDate" ColumnName="PendingOrderCreateDate" />
+                <ScalarProperty Name="PendingOrderUpdateDate" ColumnName="PendingOrderUpdateDate" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="SaatvesaatDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductDesc" ColumnName="ProductDesc" />
+                <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+                <ScalarProperty Name="ProductBrandCategoryId" ColumnName="ProductBrandCategoryId" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

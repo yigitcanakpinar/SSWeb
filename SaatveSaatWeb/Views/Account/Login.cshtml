@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <center>
+        <input type="text" class="form-control" name="Username" placeholder="KULLANICI ADI" required="" autofocus="" style="max-width:500px!important; margin:20px;" />
+        <input type="password" class="form-control" name="Password" placeholder="PAROLA" required="" style="max-width:500px!important; margin:20px;" />
+        <button class="btn btn-lg btn-success btn-block" name="Submit" value="Login" type="Submit" style="width:500px!important;margin:20px;">Giriş Yap</button>
+    </center>
+}

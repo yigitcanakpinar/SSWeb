@@ -1,0 +1,25 @@
+﻿@using SaatveSaatWeb.Models;
+@model List<Product>
+@{
+    ViewBag.Title = "About";
+}
+
+<div class="container" style="vertical-align:top">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ThumbSaatveSaat">
+            <div class="thumbnail">
+                <a href="/saatvesaat/detaylar/@item.ProductId">
+                    <div class="caption1SaatveSaat">@Html.DisplayFor(modelItem => item.ProductName)</div>
+                    <img src="/images/@Html.DisplayFor(modelItem => item.ProductImage)">
+                    <div class="desc1SaatveSaat">
+                        <p>@Html.DisplayFor(modeItem => item.ProductDesc)</p>
+                        <p>Ürünün Fiyatı = @Html.DisplayFor(modeItem => item.ProductPrice) TL</p>
+                        <p>Stok Adeti = Son @Html.DisplayFor(modeItem => item.ProductStock) Ürün</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+

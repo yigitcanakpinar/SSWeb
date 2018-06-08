@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaatveSaatApi", "SaatveSaatApi\SaatveSaatApi.csproj", "{13FE7827-F1FA-4C29-A189-2C00ADA02DDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaatveSaatWeb", "SaatveSaatWeb\SaatveSaatWeb.csproj", "{F725DD76-4443-4259-AA65-1FCA7A93E9F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13FE7827-F1FA-4C29-A189-2C00ADA02DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13FE7827-F1FA-4C29-A189-2C00ADA02DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13FE7827-F1FA-4C29-A189-2C00ADA02DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13FE7827-F1FA-4C29-A189-2C00ADA02DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F725DD76-4443-4259-AA65-1FCA7A93E9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F725DD76-4443-4259-AA65-1FCA7A93E9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F725DD76-4443-4259-AA65-1FCA7A93E9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F725DD76-4443-4259-AA65-1FCA7A93E9F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59A653ED-68E7-4E8E-923E-96B75501EBA8}
+	EndGlobalSection
+EndGlobal

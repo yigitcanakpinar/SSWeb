@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00b07c2016694088b8badd2e143f39d2" Name="Diagram1">
+        <EntityTypeShape EntityType="SaatvesaatDBModel.Brand" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaatvesaatDBModel.BrandCategory" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaatvesaatDBModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaatvesaatDBModel.CompletedOrder" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaatvesaatDBModel.PendingOrder" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaatvesaatDBModel.Product" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="SaatvesaatDBModel.FK_BrandCategory_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="SaatvesaatDBModel.FK_BrandCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="SaatvesaatDBModel.FK_Product_BrandCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SaatvesaatDBModel.FK_CompletedOrder_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SaatvesaatDBModel.FK_PendingOrder_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
